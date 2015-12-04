@@ -11,7 +11,7 @@
 
     <Page.Resources>
         <!--  Region: Button Style (round corners)  -->
-        <Style TargetType="Button">
+        <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}" />
             <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
             <Setter Property="BorderBrush" Value="{ThemeResource SystemControlForegroundTransparentBrush}" />
@@ -27,8 +27,8 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="RootGrid"
-                                Width="160"
-                                Height="45"
+                                Width="250"
+                                Height="50"
                                 Background="{TemplateBinding Background}"
                                 CornerRadius="20">
                             <VisualStateManager.VisualStateGroups>
@@ -87,7 +87,7 @@
                                               Content="{TemplateBinding Content}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               ContentTransitions="{TemplateBinding ContentTransitions}"
-                                              FontSize="15"
+                                              FontSize="25"
                                               FontWeight="Bold"
                                               Padding="{TemplateBinding Padding}" />
                         </Border>
@@ -128,12 +128,14 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Click="ExpeditePage_Click"
-                Content="Go to Orders View" />
+                Content="Go to Orders View"
+                Style="{StaticResource ButtonStyle}" />
         <Button Grid.Row="2"
                 Grid.Column="1"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Click="OrderPage_Click"
-                Content="Submit Order" />
+                Content="Submit Order"
+                Style="{StaticResource ButtonStyle}" />
     </Grid>
 </Page>
