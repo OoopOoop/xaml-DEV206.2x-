@@ -2,6 +2,8 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:extensions="using:RestaurantManager.Extensions"
+      xmlns:i="using:Microsoft.Xaml.Interactivity"
       xmlns:local="using:RestaurantManager.UniversalWindows"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       Width="1134.898"
@@ -98,6 +100,9 @@
         <!--  EndRegion: Button Style (round corners)  -->
     </Page.Resources>
 
+    <i:Interaction.Behaviors>
+        <extensions:RightClickMessageDialogBehavior Title="Credits" Message="Thanks to the team who developed this" />
+    </i:Interaction.Behaviors>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>

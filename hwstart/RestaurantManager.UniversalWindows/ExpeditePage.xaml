@@ -2,6 +2,7 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:extensions="using:RestaurantManager.Extensions"
       xmlns:local="using:RestaurantManager.UniversalWindows"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:models="using:RestaurantManager.Models"
@@ -16,7 +17,17 @@
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Width" Value="100" />
+        </Style>
+        <extensions:BoolToColorConverter x:Key="BoolToColorConverter"
+                                         FalseColor="Transparent"
+                                         TrueColor="Red" />
     </Page.Resources>
+
     <Page.TopAppBar>
         <AppBar>
             <AppBarButton Click="MainPage_Click" Label="Home">
@@ -26,6 +37,7 @@
             </AppBarButton>
         </AppBar>
     </Page.TopAppBar>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.05*" />
@@ -74,11 +86,13 @@
                             <TextBlock Style="{StaticResource TitleTextBlock}" Text="Table:" />
                             <TextBlock Text="{Binding Table.Description}" />
                         </StackPanel>
-                        <Button Grid.Row="3"
-                                Width="100"
-                                HorizontalAlignment="Center"
-                                Content="Delete"
-                                FontSize="15" />
+                        <Grid Grid.Row="3">
+                            <Grid.Background>
+                                <!--  TrueColor and FalseColor are set in Page.Resources  -->
+                                <SolidColorBrush Color="{Binding Expedite, Converter={StaticResource BoolToColorConverter}}" />
+                            </Grid.Background>
+                            <Button Content="Delete" Style="{StaticResource ButtonStyle}" />
+                        </Grid>
                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>

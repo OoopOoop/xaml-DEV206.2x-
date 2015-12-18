@@ -12,7 +12,6 @@ namespace RestaurantManager.Models
         public List<Order> OrderItems
         {
             get { return base.Repository.Orders; }
-
         }
     }
 }
