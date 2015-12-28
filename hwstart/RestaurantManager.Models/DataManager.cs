@@ -19,8 +19,7 @@ namespace RestaurantManager.Models
 
         private async void LoadData()
         {
-           
-
+            //change made for master
             //change for mvvm
 
             this.Repository = new RestaurantContext();
