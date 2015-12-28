@@ -11,12 +11,22 @@ namespace RestaurantManager.Extensions
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            Color returnValue = Colors.Transparent;
+            Color returnValue;// = Colors.Transparent;
             if (value is bool)
             {
                 returnValue = (bool)value ? TrueColor : FalseColor;
             }
+            else
+            {
+                returnValue = default(bool) ? TrueColor : FalseColor;
+            }
             return returnValue;
+
+
+            //if (value is bool)
+            //    return (bool)value ? TrueColor : FalseColor;
+
+            //return FalseColor;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
