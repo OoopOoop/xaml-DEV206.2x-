@@ -19,9 +19,9 @@ namespace RestaurantManager.Models
 
         private async void LoadData()
         {
-            //testing code for mvvm
+           
 
-            //second cahnge for mvvm
+            //change for mvvm
 
             this.Repository = new RestaurantContext();
             await this.Repository.InitializeContextAsync();
