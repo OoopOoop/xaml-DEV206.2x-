@@ -22,13 +22,12 @@ namespace RestaurantManager.Extensions
             }
             return returnValue;
 
-
             //if (value is bool)
             //    return (bool)value ? TrueColor : FalseColor;
 
             //return FalseColor;
         }
-
+    
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             bool returnValue = default(bool);

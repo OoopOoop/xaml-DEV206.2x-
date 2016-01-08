@@ -1,5 +1,4 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 
 namespace RestaurantManager.UniversalWindows
 {
@@ -8,11 +7,6 @@ namespace RestaurantManager.UniversalWindows
         public ExpeditePage()
         {
             this.InitializeComponent();
-        }
-
-        private void MainPage_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(MainPage));
         }
     }
 }

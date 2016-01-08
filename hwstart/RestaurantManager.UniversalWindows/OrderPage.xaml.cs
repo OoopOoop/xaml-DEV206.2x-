@@ -1,4 +1,8 @@
-﻿using Windows.UI.Xaml;
+﻿
+using GalaSoft.MvvmLight.Ioc;
+using RestaurantManager.ViewModels;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace RestaurantManager.UniversalWindows
@@ -10,9 +14,5 @@ namespace RestaurantManager.UniversalWindows
             this.InitializeComponent();
         }
 
-        private void MainPage_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(MainPage));
-        }
     }
 }
