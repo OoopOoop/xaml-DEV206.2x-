@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using RestaurantManager.ViewModels;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace RestaurantManager.UniversalWindows
@@ -10,12 +11,12 @@ namespace RestaurantManager.UniversalWindows
             this.InitializeComponent();
         }
 
-        private void ExpeditePage_Click(object sender, RoutedEventArgs e)
+        private void OrderViewBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ExpeditePage));
         }
 
-        private void OrderPage_Click(object sender, RoutedEventArgs e)
+        private void SubmitOrderBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(OrderPage));
         }

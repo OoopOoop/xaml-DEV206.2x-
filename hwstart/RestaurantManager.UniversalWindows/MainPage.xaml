@@ -128,19 +128,45 @@
                    VerticalAlignment="Bottom"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    Text="Internal Test Version" />
-        <Button Grid.Row="2"
+        <Button x:Name="orderViewBtn"
+                Grid.Row="2"
                 Grid.Column="0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Click="ExpeditePage_Click"
+                Click="OrderViewBtn_Click"
                 Content="Go to Orders View"
                 Style="{StaticResource ButtonStyle}" />
-        <Button Grid.Row="2"
+        <Button x:Name="SubmitOrderBtn"
+                Grid.Row="2"
                 Grid.Column="1"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Click="OrderPage_Click"
+                Click="SubmitOrderBtn_Click"
                 Content="Submit Order"
                 Style="{StaticResource ButtonStyle}" />
     </Grid>
 </Page>
+
+
+
+
+
+<!--
+    DataContext="{Binding MainViewModel,
+    Source={StaticResource Locator}}"
+-->
+
+
+
+
+<!--
+    Command="{Binding NavigationCommand}"
+    CommandParameter="ExpeditePage"
+-->
+
+
+
+<!--
+    Command="{Binding NavigationCommand}"
+    CommandParameter="OrderPage"
+-->

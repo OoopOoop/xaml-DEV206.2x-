@@ -5,11 +5,9 @@
       xmlns:extensions="using:RestaurantManager.Extensions"
       xmlns:local="using:RestaurantManager.UniversalWindows"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:models="using:RestaurantManager.Models"
+      DataContext="{Binding ExpediteViewModel,
+                            Source={StaticResource Locator}}"
       mc:Ignorable="d">
-    <Page.DataContext>
-        <models:ExpediteDataManager />
-    </Page.DataContext>
 
     <Page.Resources>
         <Style x:Key="TitleTextBlock" TargetType="TextBlock">
@@ -30,7 +28,9 @@
 
     <Page.TopAppBar>
         <AppBar>
-            <AppBarButton Click="MainPage_Click" Label="Home">
+            <AppBarButton Command="{Binding NavigationCommand}"
+                          CommandParameter="MainPage"
+                          Label="Home">
                 <AppBarButton.Icon>
                     <SymbolIcon Symbol="Home" />
                 </AppBarButton.Icon>
@@ -45,7 +45,10 @@
             <RowDefinition Height="0.10*" />
         </Grid.RowDefinitions>
 
-        <GridView Grid.Row="1" ItemsSource="{Binding OrderItems}">
+        <GridView x:Name="OrdersGridView"
+                  Grid.Row="1"
+                  ItemsSource="{Binding OrderItems,
+                                        Mode=TwoWay}">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Grid Width="300"
@@ -80,7 +83,9 @@
                                    Text="Orders:" />
                         <StackPanel Grid.Row="1" Margin="10,0,10,0">
                             <TextBlock Style="{StaticResource TitleTextBlock}" Text="Special Requests:" />
-                            <TextBlock Margin="0,20,0,0" Text="{Binding SpecialRequests}" />
+                            <TextBlock Margin="0,20,0,0"
+                                       Text="{Binding SpecialRequests}"
+                                       TextWrapping="Wrap" />
                         </StackPanel>
                         <StackPanel Grid.Row="2" Margin="10,0,10,0">
                             <TextBlock Style="{StaticResource TitleTextBlock}" Text="Table:" />
@@ -91,7 +96,11 @@
                                 <!--  TrueColor and FalseColor are set in Page.Resources  -->
                                 <SolidColorBrush Color="{Binding Expedite, Converter={StaticResource BoolToColorConverter}}" />
                             </Grid.Background>
-                            <Button Content="Delete" Style="{StaticResource ButtonStyle}" />
+                            <Button Command="{Binding DataContext.DeleteOrderCommand,
+                                                      ElementName=OrdersGridView}"
+                                    CommandParameter="{Binding}"
+                                    Content="Delete"
+                                    Style="{StaticResource ButtonStyle}" />
                         </Grid>
                     </Grid>
                 </DataTemplate>
@@ -100,6 +109,7 @@
         <Button Grid.Row="2"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
+                Command="{Binding DeleteAllOrdersCommand}"
                 Content="Clear All Orders" />
     </Grid>
 </Page>
