@@ -98,6 +98,20 @@
             </Setter>
         </Style>
         <!--  EndRegion: Button Style (round corners)  -->
+
+
+        <Storyboard x:Name="ButtonSlider">
+            <DoubleAnimation Duration="0:0:1"
+                             From="-2000"
+                             Storyboard.TargetName="ExpediteButton"
+                             Storyboard.TargetProperty="(Button.RenderTransform).(TranslateTransform.X)"
+                             To="0" />
+            <DoubleAnimation Duration="0:0:1"
+                             From="2000"
+                             Storyboard.TargetName="SubmitOrderButton"
+                             Storyboard.TargetProperty="(Button.RenderTransform).(TranslateTransform.X)"
+                             To="0" />
+        </Storyboard>
     </Page.Resources>
 
     <i:Interaction.Behaviors>
@@ -128,22 +142,31 @@
                    VerticalAlignment="Bottom"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    Text="Internal Test Version" />
-        <Button x:Name="orderViewBtn"
+        <Button x:Name="ExpediteButton"
                 Grid.Row="2"
                 Grid.Column="0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Click="OrderViewBtn_Click"
+                Click="ExpediteButton_Click"
                 Content="Go to Orders View"
-                Style="{StaticResource ButtonStyle}" />
-        <Button x:Name="SubmitOrderBtn"
+                Style="{StaticResource ButtonStyle}">
+            <Button.RenderTransform>
+                <TranslateTransform X="0" Y="0" />
+            </Button.RenderTransform>
+        </Button>
+
+        <Button x:Name="SubmitOrderButton"
                 Grid.Row="2"
                 Grid.Column="1"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Click="SubmitOrderBtn_Click"
+                Click="SubmitOrderButton_Click"
                 Content="Submit Order"
-                Style="{StaticResource ButtonStyle}" />
+                Style="{StaticResource ButtonStyle}">
+            <Button.RenderTransform>
+                <TranslateTransform X="0" Y="0" />
+            </Button.RenderTransform>
+        </Button>
     </Grid>
 </Page>
 

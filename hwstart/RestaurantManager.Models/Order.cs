@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace RestaurantManager.Models
 {
@@ -18,9 +20,9 @@ namespace RestaurantManager.Models
 
         public bool Expedite { get; set; }
 
-        //public override string ToString()
-        //{
-        //    return String.Join(", ", Items.Select(i => i.Title));
-        //}
+        public override string ToString()
+        {
+            return String.Join(", ", Items.Select(i => i.Title));
+        }
     }
 }

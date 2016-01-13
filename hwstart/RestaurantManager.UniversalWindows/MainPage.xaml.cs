@@ -9,14 +9,15 @@ namespace RestaurantManager.UniversalWindows
         public MainPage()
         {
             this.InitializeComponent();
+            ButtonSlider.Begin();
         }
 
-        private void OrderViewBtn_Click(object sender, RoutedEventArgs e)
+        private void ExpediteButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ExpeditePage));
         }
 
-        private void SubmitOrderBtn_Click(object sender, RoutedEventArgs e)
+        private void SubmitOrderButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(OrderPage));
         }

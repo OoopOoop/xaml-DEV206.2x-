@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Views;
-using RestaurantManager.Models;
+﻿using RestaurantManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -51,9 +50,8 @@ namespace RestaurantManager.ViewModels
             this.CurrentlySelectedMenuItems = new ObservableCollection<MenuItem>();
         }
 
-        public OrderViewModel(INavigationService navigationService)
+        public OrderViewModel()
         {
-            this._navigationService = navigationService;
             AddToOrderCommand = new DelegateCommand<MenuItem>(AddToOrder);
             SubmitOrderCommand = new DelegateCommand<object>(SubmitOrder, CanSubmitOrder);
         }
@@ -61,10 +59,9 @@ namespace RestaurantManager.ViewModels
         // Displaying message when an order was submitted
         private async void DisplaypopupMessage()
         {
-            var messageDialog = new MessageDialog("View all Orders?", "Order Submitted");
-            messageDialog.Commands.Add(new UICommand("Ok", (UICommandInvokedHandler) => { NavigateTo("ExpeditePage"); }));
-            messageDialog.Commands.Add(new UICommand("Cancel", (UICommandInvokedHandler) => { SubmitOrderCommand.RaiseCanExecuteChanged(); }));
+            var messageDialog = new MessageDialog("Order Submitted");
             await messageDialog.ShowAsync();
+            SubmitOrderCommand.RaiseCanExecuteChanged();
         }
 
         //Enables/Disables "Sumbit Order" button

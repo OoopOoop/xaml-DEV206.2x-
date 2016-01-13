@@ -1,8 +1,4 @@
-﻿
-using GalaSoft.MvvmLight.Ioc;
-using RestaurantManager.ViewModels;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
+﻿using RestaurantManager.ViewModels;
 using Windows.UI.Xaml.Controls;
 
 namespace RestaurantManager.UniversalWindows
@@ -12,7 +8,13 @@ namespace RestaurantManager.UniversalWindows
         public OrderPage()
         {
             this.InitializeComponent();
+
+           
         }
 
+        private void AppBarButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
     }
 }

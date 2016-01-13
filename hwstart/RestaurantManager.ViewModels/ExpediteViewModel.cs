@@ -1,46 +1,66 @@
-﻿using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
-using RestaurantManager.Models;
+﻿using RestaurantManager.Models;
 using System.Collections.Generic;
-using System.Windows.Input;
+using System.Collections.ObjectModel;
 
 namespace RestaurantManager.ViewModels
 {
     public class ExpediteViewModel : ViewModel
     {
+        private ObservableCollection<Order> _orderItems;
         public DelegateCommand<Order> DeleteOrderCommand { get; private set; }
-        public ICommand DeleteAllOrdersCommand { get; private set; }
-        public List<Order> OrderItems { get; set; }
+        public DelegateCommand<object> DeleteAllOrdersCommand { get; private set; }
+        public List<Order> SavedOrders { get; set; }
+
+        public ObservableCollection<Order> OrderItems
+        {
+            get { return _orderItems; }
+            set
+            {
+                if (value != _orderItems)
+                {
+                    _orderItems = value;
+                    OnPropertyChanged(nameof(OrderItems));
+                }
+            }
+        }
 
         //public List<Order> OrderItems
         //{
         //    get { return base.Repository.Orders; }
         //}
 
-        public ExpediteViewModel(INavigationService navigationService)
+        public ExpediteViewModel()
         {
-            this._navigationService = navigationService;
             DeleteOrderCommand = new DelegateCommand<Order>(DeleteOrder);
-            DeleteAllOrdersCommand = new RelayCommand(DeleteAllOrders);
+            DeleteAllOrdersCommand = new DelegateCommand<object>(DeleteAllOrders);
         }
 
         protected override void OnDataLoaded()
         {
-            OrderItems = base.Repository.Orders;
-            OnPropertyChanged(nameof(OrderItems));
+            SavedOrders = base.Repository.Orders;
+            OrderItems = new ObservableCollection<Order>();
+            loadOrders();
         }
 
-        private void DeleteAllOrders()
+        private void loadOrders()
+        {
+            foreach (Order item in SavedOrders)
+            {
+                OrderItems.Add(item);
+            }
+        }
+
+        private void DeleteAllOrders(object ob)
         {
             Repository.Orders.Clear();
-            NavigateTo("ExpeditePage");
+            OrderItems.Clear();
+            DeleteAllOrdersCommand.RaiseCanExecuteChanged();
         }
 
         private void DeleteOrder(Order order)
         {
             Repository.Orders.Remove(order);
-            //Refresh page to see orders "removed"
-            NavigateTo("ExpeditePage");
+            OrderItems.Remove(order);
         }
     }
 }

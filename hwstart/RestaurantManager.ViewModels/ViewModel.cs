@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Views;
-using RestaurantManager.Models;
+﻿using RestaurantManager.Models;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -7,18 +6,16 @@ namespace RestaurantManager.ViewModels
 {
     public abstract class ViewModel : INotifyPropertyChanged
     {
-        private DelegateCommand<string> _navigationCommand;
+        private bool _isLoading;
         protected RestaurantContext Repository { get; private set; }
 
-        public INavigationService _navigationService;
-        public DelegateCommand<string> NavigationCommand => _navigationCommand ?? (_navigationCommand = new DelegateCommand<string>(NavigateTo));
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set { _isLoading = value; OnPropertyChanged(); }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void NavigateTo(string Pagekey)
-        {
-            _navigationService.NavigateTo(Pagekey);
-        }
 
         public void OnPropertyChanged([CallerMemberName]string propName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
 
@@ -29,8 +26,10 @@ namespace RestaurantManager.ViewModels
 
         private async void LoadData()
         {
+            IsLoading = true;
             this.Repository = await RestaurantContextFactory.GetRestaurantContextAsync();
             OnDataLoaded();
+            IsLoading = false;
         }
 
         protected abstract void OnDataLoaded();
