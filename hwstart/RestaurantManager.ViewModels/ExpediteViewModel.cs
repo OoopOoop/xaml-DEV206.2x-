@@ -24,11 +24,7 @@ namespace RestaurantManager.ViewModels
             }
         }
 
-        //public List<Order> OrderItems
-        //{
-        //    get { return base.Repository.Orders; }
-        //}
-
+     
         public ExpediteViewModel()
         {
             DeleteOrderCommand = new DelegateCommand<Order>(DeleteOrder);
